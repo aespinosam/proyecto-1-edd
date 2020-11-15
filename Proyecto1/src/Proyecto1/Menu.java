@@ -5,6 +5,8 @@
  */
 package Proyecto1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author royvi
@@ -136,6 +138,9 @@ public class Menu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //        modalNuevaCiudad.setVisible(true);
+//      poner funcion de agregar ciudad
+        JOptionPane.showInputDialog("Ingrese el nombre de la ciudad que desea agregar: ");
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
