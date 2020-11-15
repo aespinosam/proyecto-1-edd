@@ -11,7 +11,7 @@ package Proyecto1;
  */
 public class Menu extends javax.swing.JFrame {
     
-//    Grafo miGrafo;
+    Grafo miGrafo;
     
     /**
      * Creates new form Menu
@@ -22,12 +22,11 @@ public class Menu extends javax.swing.JFrame {
 //        this.miGrafo = null;
     }
     
-//    public Menu(Grafo unGrafo){
-//        initComponents();
-//        this.miGrafo = unGrafo;
-//        AgregarCiudad modalNuevaCiudad = new AgregarCiudad(miGrafo);
-//        
-//    }
+    public Menu(Grafo unGrafo){
+        initComponents();
+        this.miGrafo = unGrafo;
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

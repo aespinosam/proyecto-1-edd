@@ -14,8 +14,8 @@ public class Main {
     public static void main(String [] args){
         
         Grafo miGrafo = new Grafo();
-//        Menu menu = new Menu(miGrafo);
-//        menu.show();
+        Menu menu = new Menu(miGrafo);
+        menu.setVisible(true);
         
         miGrafo.anadirNodo("Caracas");
         miGrafo.anadirNodo("Miami");
@@ -26,7 +26,8 @@ public class Main {
         miGrafo.anadirArista("caracas", "barcelona", 4);
         miGrafo.anadirArista("caracas", "miami", 4);
         miGrafo.anadirArista("caracas", "new york", 4);
-        miGrafo.getNodosAdyacentes("caracas");
+//        miGrafo.getNodosAdyacentes("caracas");
+        miGrafo.getNodosAdyacentes("madrid");
         
     }
     
