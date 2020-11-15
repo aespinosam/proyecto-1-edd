@@ -7,6 +7,8 @@
 
 package Proyecto1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author andresespinoza
@@ -16,6 +18,8 @@ public class Grafo {
     Nodo ultimoNodo;
     Arista primeraArista;
     Arista ultimaArista;
+    Nodo primerVisitado;
+    Nodo ultimoVisitado;
     
    
     public Grafo(){
@@ -42,6 +46,85 @@ public class Grafo {
             contador++;
         } 
         return contador;
+    }
+
+    public Nodo getPrimerNodo() {
+        return primerNodo;
+    }
+
+    public void setPrimerNodo(Nodo primerNodo) {
+        this.primerNodo = primerNodo;
+    }
+
+    public Nodo getUltimoNodo() {
+        return ultimoNodo;
+    }
+
+    public void setUltimoNodo(Nodo ultimoNodo) {
+        this.ultimoNodo = ultimoNodo;
+    }
+
+    public Arista getPrimeraArista() {
+        return primeraArista;
+    }
+
+    public void setPrimeraArista(Arista primeraArista) {
+        this.primeraArista = primeraArista;
+    }
+
+    public Arista getUltimaArista() {
+        return ultimaArista;
+    }
+
+    public void setUltimaArista(Arista ultimaArista) {
+        this.ultimaArista = ultimaArista;
+    }
+
+    public Nodo getPrimerVisitado() {
+        return primerVisitado;
+    }
+
+    public void setPrimerVisitado(Nodo primerVisitado) {
+        this.primerVisitado = primerVisitado;
+    }
+
+    public Nodo getUltimoVisitado() {
+        return ultimoVisitado;
+    }
+
+    public void setUltimoVisitado(Nodo ultimoVisitado) {
+        this.ultimoVisitado = ultimoVisitado;
+    }
+    
+    public void visitarNodo(String nombreDelNodo){
+        
+        Nodo navegador = this.primerNodo;
+        boolean encontrado = false;
+        while(navegador != null && !encontrado){
+            if(navegador.getNombre().equals(nombreDelNodo)){
+                encontrado = true;
+            }
+            else{
+                navegador = navegador.getSiguienteNodo();
+            }   
+        }
+        if(encontrado){
+            //Anandir el nodo a la lista de nodos visitados
+            if(this.primerVisitado == null){
+                this.primerVisitado = navegador;
+            }
+            else if(primerVisitado.getSiguienteNodo() == null){
+                this.primerVisitado.setSiguienteNodo(navegador);
+                this.ultimoVisitado = navegador;
+            }
+            else{
+                this.ultimoVisitado.setSiguienteNodo(navegador);
+                this.ultimoVisitado = navegador;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Nodo es parte del grafo, introduzca un nombre valido");
+        }
     }
     
     public void anadirNodo(String nuevo){
@@ -90,7 +173,7 @@ public class Grafo {
         }
     }
     
-    public void anadirArista(String origen, String destino, float distancia){
+    public void anadirArista(String origen, String destino, double distancia){
         //Validar que los dos nodos existen en el grafo
         boolean origenExistente = this.nodoExistente(origen);
         boolean destinoExistente = this.nodoExistente(destino);
