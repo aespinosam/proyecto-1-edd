@@ -9,25 +9,25 @@ package Proyecto1;
  *
  * @author andresespinoza
  */
-public class Vertice {
+public class Arista {
     Nodo origen;
     Nodo destino;
     float distancia;
-    Vertice siguienteVertice;
+    Arista siguienteArista;
     
-    public Vertice(Nodo orig, Nodo dest, float dist){
+    public Arista(Nodo orig, Nodo dest, float dist){
         this.origen = orig;
         this.destino = dest;
         this.distancia = dist;
-        this.siguienteVertice = null;
+        this.siguienteArista = null;
         
     }
     
-    public Vertice(){
+    public Arista(){
         this.origen = null;
         this.destino = null;
         this.distancia = 0F;
-        this.siguienteVertice = null;
+        this.siguienteArista = null;
     }
 
     public Nodo getOrigen() {
@@ -54,12 +54,12 @@ public class Vertice {
         this.distancia = distancia;
     }
 
-    public Vertice getSiguienteVertice() {
-        return siguienteVertice;
+    public Arista getSiguienteArista() {
+        return siguienteArista;
     }
 
-    public void setSiguienteVertice(Vertice siguienteVertice) {
-        this.siguienteVertice = siguienteVertice;
+    public void setSiguienteArista(Arista siguienteArista) {
+        this.siguienteArista = siguienteArista;
     }
     
     

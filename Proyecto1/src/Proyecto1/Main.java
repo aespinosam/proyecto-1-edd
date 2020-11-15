@@ -16,37 +16,17 @@ public class Main {
         Grafo miGrafo = new Grafo();
 //        Menu menu = new Menu(miGrafo);
 //        menu.show();
-        Nodo Caracas = new Nodo("Caracas");
-        Nodo Miami = new Nodo("Miami");
-        Nodo Madrid = new Nodo("Madrid");
-        Nodo Barcelona = new Nodo("Barcelona");
         
-        Vertice CaracasMadrid = new Vertice(Caracas, Madrid, 5);
-        Vertice CaracasMiami = new Vertice(Caracas, Miami, 4);
-        
-        Lista_Adyacencia adyacenciaMiami = new Lista_Adyacencia();
-        adyacenciaMiami.anadirSiguiente(Miami, Madrid, 2);
-        adyacenciaMiami.anadirSiguiente(Miami, Caracas, 6);
-        
-        Lista_Adyacencia adyacenciaCaracas = new Lista_Adyacencia();
-        adyacenciaCaracas.anadirSiguiente(Caracas, Miami, 9);
-        adyacenciaCaracas.anadirSiguiente(Caracas, Barcelona, 2);
-        
-        Lista_Adyacencia adyacenciaMadrid = new Lista_Adyacencia();
-        adyacenciaMadrid.anadirSiguiente(Madrid, Caracas, 7);
-        adyacenciaMadrid.anadirSiguiente(Madrid, Barcelona, 1);
-        adyacenciaMadrid.anadirSiguiente(Madrid, Miami, 4);
-        
-        Miami.setNodosAdyacentes(adyacenciaMiami);
-        Caracas.setNodosAdyacentes(adyacenciaCaracas);
-        Madrid.setNodosAdyacentes(adyacenciaMadrid);
-        
-        miGrafo.anadirNodo(Caracas);
-        miGrafo.anadirNodo(Miami);
-        miGrafo.anadirNodo(Madrid);
-        miGrafo.getNodosAdyacentes(Miami);
-        System.out.println("---");
-        miGrafo.getNodosAdyacentes(Caracas);
+        miGrafo.anadirNodo("Caracas");
+        miGrafo.anadirNodo("Miami");
+        miGrafo.anadirNodo("Madrid");
+        miGrafo.anadirNodo("Barcelona");
+        miGrafo.anadirNodo("New York");
+        miGrafo.anadirArista("caracas", "madrid", 10);
+        miGrafo.anadirArista("caracas", "barcelona", 4);
+        miGrafo.anadirArista("caracas", "miami", 4);
+        miGrafo.anadirArista("caracas", "new york", 4);
+        miGrafo.getNodosAdyacentes("caracas");
         
     }
     

@@ -10,62 +10,62 @@ package Proyecto1;
  * @author andresespinoza
  */
 public class Lista_Adyacencia {
-    Vertice primero;
-    Vertice ultimo;
+    Arista primera;
+    Arista ultima;
     
     public Lista_Adyacencia(){
-        this.primero = null;
-        this.ultimo = null;
+        this.primera = null;
+        this.ultima = null;
     }
 
-    public Vertice getPrimero() {
-        return primero;
+    public Arista getPrimero() {
+        return primera;
     }
 
-    public void setPrimero(Vertice primero) {
-        this.primero = primero;
+    public void setPrimero(Arista primera) {
+        this.primera = primera;
     }
 
-    public Vertice getUltimo() {
-        return ultimo;
+    public Arista getUltimo() {
+        return ultima;
     }
 
-    public void setUltimo(Vertice ultimo) {
-        this.ultimo = ultimo;
+    public void setUltimo(Arista ultima) {
+        this.ultima = ultima;
     }
     
     public int tamano(){
-        Vertice navegador = this.primero;
+        Arista navegador = this.primera;
         int contador = 0;
         while(navegador != null){
             contador++;
-            navegador = navegador.getSiguienteVertice();
+            navegador = navegador.getSiguienteArista();
         }
         return contador;
     }
     
     public void anadirSiguiente(Nodo origen, Nodo destino, float distancia){
-        Vertice nuevoVertice = new Vertice(origen, destino, distancia);
+        Arista nuevaArista = new Arista(origen, destino, distancia);
         int tamano = this.tamano();
         if(tamano == 0){
-            this.primero = nuevoVertice;
+            this.primera = nuevaArista;
         }
         else if(tamano == 1){
-            this.primero.setSiguienteVertice(nuevoVertice);
-            this.ultimo = nuevoVertice;
+            this.primera.setSiguienteArista(nuevaArista);
+            this.ultima = nuevaArista;
         }
         else{
-            this.ultimo.setSiguienteVertice(nuevoVertice);
-            this.ultimo = nuevoVertice;
+            this.ultima.setSiguienteArista(nuevaArista);
+            this.ultima = nuevaArista;
         }
     }
     
     public void imprimir(){
-        Vertice navegador = this.primero;
+        Arista navegador = this.primera;
         
         while(navegador != null){
             System.out.println(navegador.getOrigen().getNombre() + "---" + navegador.getDistancia() + "--->" + navegador.getDestino().getNombre());
-            navegador = navegador.getSiguienteVertice();
+            navegador = navegador.getSiguienteArista();
         }
  
     }

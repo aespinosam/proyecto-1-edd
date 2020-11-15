@@ -14,7 +14,8 @@ package Proyecto1;
 public class Grafo {
     Nodo primerNodo;
     Nodo ultimoNodo;
-    
+    Arista primeraArista;
+    Arista ultimaArista;
     
    
     public Grafo(){
@@ -43,7 +44,9 @@ public class Grafo {
         return contador;
     }
     
-    public void anadirNodo(Nodo nuevoNodo){
+    public void anadirNodo(String nuevo){
+        Nodo nuevoNodo = new Nodo(nuevo);
+        
         if(this.primerNodo == null){
             this.primerNodo = nuevoNodo;
         }
@@ -57,26 +60,105 @@ public class Grafo {
         }
     }
     
-    public void getNodosAdyacentes(Nodo origen){
-        Nodo navegador = this.primerNodo;
+    //Chequear que un nodo con el mombre introducido existe
+    public boolean nodoExistente(String nombreNodo){
+        Nodo nav = this.primerNodo;
         boolean encontrado = false;
-        int contador = 0;
-        while(encontrado == false && contador <= 10){
-            if(navegador == origen){
+        while(nav != null && encontrado == false){
+            String nombreNav = nav.getNombre();
+            if(nombreNav.toLowerCase().equals(nombreNodo.toLowerCase())){
                 encontrado = true;
             }
+            nav = nav.getSiguienteNodo();
+        }
+        return encontrado;
+    }
+    
+    
+    private void anadirAristaAlFinal(Arista nuevaArista){
+        
+        if(this.primeraArista == null){
+            this.primeraArista = nuevaArista;
+        }
+        else if(this.primeraArista.getSiguienteArista() == null){
+            this.primeraArista.setSiguienteArista(nuevaArista);
+            this.ultimaArista = nuevaArista;
+        }
+        else{
+            this.ultimaArista.setSiguienteArista(nuevaArista);
+            this.ultimaArista = nuevaArista;
+        }
+    }
+    
+    public void anadirArista(String origen, String destino, float distancia){
+        //Validar que los dos nodos existen en el grafo
+        boolean origenExistente = this.nodoExistente(origen);
+        boolean destinoExistente = this.nodoExistente(destino);
+        
+        if(origenExistente && destinoExistente){
+            
+            //Validar que no hay arista existentes entre esos nodos 
+            boolean aristaEncontrada = false;
+            Arista nav = this.primeraArista;
+            
+            while(aristaEncontrada == false && nav != null){
+                if(nav.getOrigen().getNombre().toLowerCase().equals(origen.toLowerCase())){
+                    if(nav.getDestino().getNombre().toLowerCase().equals(destino.toLowerCase())){
+                        aristaEncontrada = true;
+                    }
+                
+                }
+                else if(nav.getOrigen().getNombre().toLowerCase().equals(destino.toLowerCase())){
+                    if (nav.getDestino().getNombre().toLowerCase().equals(origen.toLowerCase())){
+                        aristaEncontrada = true;
+                    }
+                }
+                nav = nav.getSiguienteArista();
+            }
+            if(!aristaEncontrada){
+                Nodo origenNuevoVert = new Nodo(origen);
+                Nodo destinoNuevoVert = new Nodo(destino);
+                Arista nuevaArista = new Arista(origenNuevoVert, destinoNuevoVert, distancia);
+                this.anadirAristaAlFinal(nuevaArista);
+                System.out.println("Anadida un nueva arista " + origen + "<--- " + distancia + " ---> " + destino);
+            }
             else{
-                contador++;
-                navegador = navegador.getSiguienteNodo();
+                System.out.println("No se puede agregar esa arista porque ya existe!");
             }
         }
-        if(encontrado == true){
-            Vertice vertices = origen.getNodosAdyacentes().getPrimero();
-            while(vertices != null){
-                System.out.println(vertices.getDestino().getNombre() + " | distancia: " + vertices.getDistancia());
-                vertices = vertices.getSiguienteVertice();
+        
+        
+    }
+    
+    
+    public void getNodosAdyacentes(String nombreNodo){
+        Arista nav = this.primeraArista;
+        nombreNodo = nombreNodo.toLowerCase();
+        
+        //Tiene que recorrer toda la lista de arista
+        while(nav != null){
+            String nombreOrigen = nav.getOrigen().getNombre().toLowerCase();
+            String nombreDestino = nav.getDestino().getNombre().toLowerCase();
+            
+            if(nombreOrigen.equals(nombreNodo)){
+                //Crear un string y anadir la lista para mostrar en la interfaz grafica
+                System.out.println(nombreDestino + " -> Distancia: " + nav.getDistancia());
             }
+            else if(nombreDestino.equals(nombreNodo)){
+                System.out.println(nombreOrigen + " -> Distancia: " + nav.getDistancia());
+            }
+            nav= nav.getSiguienteArista();
         }
+        System.out.println("--- Fin de adyacencias ---");
+        
+       
+//        if(encontrado == true){
+//            Arista arista = origen.getNodosAdyacentes().getPrimero();
+//            while(arista != null){
+//                System.out.println(arista.getDestino().getNombre() + " | distancia: " + arista.getDistancia());
+//                arista = arista.getSiguienteArista();
+//            }
+//        }
     }
     
     public void cargaGrafoDeArchivo(){
