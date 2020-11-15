@@ -10,13 +10,24 @@ package Proyecto1;
  * @author royvi
  */
 public class Menu extends javax.swing.JFrame {
-
+    
+//    Grafo miGrafo;
+    
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+//        this.modalNuevaCiudad.setVisible(false);
+//        this.miGrafo = null;
     }
+    
+//    public Menu(Grafo unGrafo){
+//        initComponents();
+//        this.miGrafo = unGrafo;
+//        AgregarCiudad modalNuevaCiudad = new AgregarCiudad(miGrafo);
+//        
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +76,11 @@ public class Menu extends javax.swing.JFrame {
         jButton3.setText("Guardar Grafo");
 
         jButton1.setText("Agregar Ciudad");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Eliminar Ciudad");
 
@@ -117,6 +133,11 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        modalNuevaCiudad.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
