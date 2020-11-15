@@ -31,4 +31,14 @@ public class Main {
         
     }
     
+    public void showMenu(boolean setShow){
+        if (setShow == true){
+            
+            
+            
+        }
+        
+        
+    }
+    
 }
