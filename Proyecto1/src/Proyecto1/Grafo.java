@@ -25,6 +25,10 @@ public class Grafo {
     public Grafo(){
         this.primerNodo = null;
         this.ultimoNodo = null;
+        this.primeraArista = null;
+        this.ultimaArista = null;
+        this.primerVisitado = null;
+        this.ultimoVisitado = null;
     }
     
     public void imprimir(){
@@ -110,21 +114,33 @@ public class Grafo {
         }
         if(encontrado){
             //Anandir el nodo a la lista de nodos visitados
+            Nodo nuevoVisitado = new Nodo(nombreDelNodo);
+            
             if(this.primerVisitado == null){
-                this.primerVisitado = navegador;
+                this.primerVisitado = nuevoVisitado;
             }
             else if(primerVisitado.getSiguienteNodo() == null){
-                this.primerVisitado.setSiguienteNodo(navegador);
-                this.ultimoVisitado = navegador;
+                this.primerVisitado.setSiguienteNodo(nuevoVisitado);
+                this.ultimoVisitado = nuevoVisitado;
             }
             else{
-                this.ultimoVisitado.setSiguienteNodo(navegador);
-                this.ultimoVisitado = navegador;
+                this.ultimoVisitado.setSiguienteNodo(nuevoVisitado);
+                this.ultimoVisitado = nuevoVisitado;
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Nodo es parte del grafo, introduzca un nombre valido");
         }
+    }
+    
+    public void imprimirVisitados(){
+        Nodo nav = this.primerVisitado;
+        System.out.println("--- Inicio de la impresion de visitados ---");
+        while(nav != null){
+            System.out.println(nav.getNombre() + " Visitado!");
+            nav = nav.getSiguienteNodo();
+        }
+        System.out.println("--Fin de la impresion de visitados --- ");
     }
     
     public void anadirNodo(String nuevo){
@@ -242,6 +258,51 @@ public class Grafo {
 //                arista = arista.getSiguienteArista();
 //            }
 //        }
+    }
+    
+    public void getAdyacentesNoVisitados(String nombreNodo){
+        Arista nav = this.primeraArista;
+        nombreNodo = nombreNodo.toLowerCase();
+        Nodo navVisitados;
+        
+        while(nav != null){
+            String nombreOrigen = nav.getOrigen().getNombre().toLowerCase();
+            String nombreDestino = nav.getDestino().getNombre().toLowerCase();
+            
+            //Obtenemos los nodos adyacentes
+            if(nombreOrigen.equals(nombreNodo)){
+                navVisitados = this.primerVisitado;
+                boolean encontrado = false;
+                while(navVisitados != null && !encontrado){
+                    
+                    if(navVisitados.getNombre().toLowerCase() == nombreDestino){
+                        //Encontro el nodo dentro de los visitados, entonces no se muestra
+                        encontrado = true;
+                    }
+                    navVisitados = navVisitados.getSiguienteNodo();
+                    
+                }
+                if(!encontrado){
+                    System.out.println(nombreDestino + "-> Distancia: " + nav.getDistancia());
+                }
+            }
+            else if(nombreDestino.equals(nombreNodo)){
+                navVisitados = this.primerVisitado;
+                boolean encontrado = false;
+                while(navVisitados != null && !encontrado){
+                    
+                    if(navVisitados.getNombre().toLowerCase() == nombreOrigen){
+                        //Encontro el nodo dentro de los visitados, entonces no se muestra
+                        encontrado = true;
+                    }
+                    navVisitados = navVisitados.getSiguienteNodo();
+                    
+                }
+                if(!encontrado){
+                    System.out.println(nombreOrigen + "-> Distancia: " + nav.getDistancia());
+                }
+            }
+        }
     }
     
     public void cargaGrafoDeArchivo(){

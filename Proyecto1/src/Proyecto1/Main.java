@@ -37,9 +37,15 @@ public class Main {
         miGrafo.anadirArista("4", "7", 4.8);
         
         
-        miGrafo.getNodosAdyacentes("1");
-        miGrafo.getNodosAdyacentes("3");
-        miGrafo.getNodosAdyacentes("5");
+//        miGrafo.getNodosAdyacentes("1");
+//        miGrafo.getNodosAdyacentes("3");
+//        miGrafo.getNodosAdyacentes("5");
+
+        miGrafo.visitarNodo("1");
+        miGrafo.visitarNodo("3");
+        miGrafo.visitarNodo("7");
+        miGrafo.visitarNodo("4");
+        miGrafo.imprimirVisitados();
         
     }
     
