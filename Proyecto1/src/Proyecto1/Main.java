@@ -43,6 +43,10 @@ public class Main {
 
         miGrafo.visitarNodo("1");
         miGrafo.visitarNodo("3");
+        miGrafo.visitarNodo("7");
+        miGrafo.visitarNodo("4");
+        
+        System.out.println(miGrafo.getUltimoVisitado().getNombre());
         
         
     }

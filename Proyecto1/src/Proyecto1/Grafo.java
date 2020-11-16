@@ -53,7 +53,9 @@ public class Grafo {
         } 
         return contador;
     }
-
+    
+    
+    
     public double getTrayectoria() {
         return trayectoria;
     }
@@ -177,7 +179,7 @@ public class Grafo {
 
                     }
                     if(!encontrado && this.ultimoVisitado.getNombre().toLowerCase() == nombreDestino){
-                        this.anadirAVisitados(nombreDestino,nav.getDistancia());
+                        this.anadirAVisitados(nombreDelNodo,nav.getDistancia());
                         System.out.println(nombreDelNodo + "-> Costo de la trayectoria: " + this.trayectoria);
                     }
                 }
@@ -188,7 +190,7 @@ public class Grafo {
                         if(navVisitados.getNombre().toLowerCase() == nombreOrigen){
                             //Encontro el nodo dentro de los visitados, entonces no se muestra
                             encontrado = true;
-                            this.anadirAVisitados(nombreOrigen, nav.getDistancia());
+                            this.anadirAVisitados(nombreDelNodo, nav.getDistancia());
                             System.out.println(nombreDelNodo + "-> Costo de la trayectoria: " + this.trayectoria);
                         }
                         navVisitados = navVisitados.getSiguienteNodo();
