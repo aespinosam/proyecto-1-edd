@@ -12,10 +12,10 @@ package Proyecto1;
 public class Arista {
     Nodo origen;
     Nodo destino;
-    float distancia;
+    double distancia;
     Arista siguienteArista;
     
-    public Arista(Nodo orig, Nodo dest, float dist){
+    public Arista(Nodo orig, Nodo dest, double dist){
         this.origen = orig;
         this.destino = dest;
         this.distancia = dist;
@@ -46,11 +46,11 @@ public class Arista {
         this.destino = destino;
     }
 
-    public float getDistancia() {
+    public double getDistancia() {
         return distancia;
     }
 
-    public void setDistancia(float distancia) {
+    public void setDistancia(double distancia) {
         this.distancia = distancia;
     }
 
