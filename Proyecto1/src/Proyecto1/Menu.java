@@ -196,9 +196,7 @@ public class Menu extends javax.swing.JFrame {
         sim.setIteraciones(Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de iteraciones: ")));
         sim.setDisipacion(Float.parseFloat(JOptionPane.showInputDialog("Ingrese la taza de disipación a utilizar: ")));
         sim.setferomIniciales(Float.parseFloat(JOptionPane.showInputDialog("Ingrese el numero de feromonas a utilizar: ")));
-        
-                
-                
+       
                 
         sim.iniciarSimulacion();
     }//GEN-LAST:event_jButton5ActionPerformed
