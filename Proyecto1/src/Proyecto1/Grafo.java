@@ -20,6 +20,7 @@ public class Grafo {
     Arista ultimaArista;
     Nodo primerVisitado;
     Nodo ultimoVisitado;
+    double trayectoria;
     
    
     public Grafo(){
@@ -29,6 +30,7 @@ public class Grafo {
         this.ultimaArista = null;
         this.primerVisitado = null;
         this.ultimoVisitado = null;
+        this.trayectoria = 0;
     }
     
     public void imprimir(){
@@ -50,6 +52,14 @@ public class Grafo {
             contador++;
         } 
         return contador;
+    }
+
+    public double getTrayectoria() {
+        return trayectoria;
+    }
+
+    public void setTrayectoria(double trayectoria) {
+        this.trayectoria = trayectoria;
     }
 
     public Nodo getPrimerNodo() {
@@ -100,7 +110,7 @@ public class Grafo {
         this.ultimoVisitado = ultimoVisitado;
     }
     
-    public void visitarNodo(String nombreDelNodo){
+    public void anadirAVisitados(String nombreDelNodo, double dist){
         
         Nodo navegador = this.primerNodo;
         boolean encontrado = false;
@@ -118,18 +128,96 @@ public class Grafo {
             
             if(this.primerVisitado == null){
                 this.primerVisitado = nuevoVisitado;
+                this.ultimoVisitado = nuevoVisitado;
+                this.trayectoria += dist;
             }
             else if(primerVisitado.getSiguienteNodo() == null){
                 this.primerVisitado.setSiguienteNodo(nuevoVisitado);
                 this.ultimoVisitado = nuevoVisitado;
+                this.trayectoria += dist;
             }
             else{
                 this.ultimoVisitado.setSiguienteNodo(nuevoVisitado);
                 this.ultimoVisitado = nuevoVisitado;
+                this.trayectoria += dist;
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Nodo es parte del grafo, introduzca un nombre valido");
+        }
+    }
+    
+    public void visitarNodo(String nombreDelNodo){
+        
+        
+        Arista nav = this.primeraArista;
+        nombreDelNodo = nombreDelNodo.toLowerCase();
+        Nodo navVisitados;
+        System.out.println("Iniciando el proceso para " + nombreDelNodo + "...");
+        if(this.primerVisitado == null){
+            this.anadirAVisitados(nombreDelNodo, 0);
+            System.out.println(nombreDelNodo + "-> Costo de la trayectoria: 0");
+        }
+        else{
+            while(nav != null){
+                String nombreOrigen = nav.getOrigen().getNombre().toLowerCase();
+                String nombreDestino = nav.getDestino().getNombre().toLowerCase();
+
+                //Obtenemos los nodos adyacentes
+                if(nombreOrigen.equals(nombreDelNodo)){
+                    navVisitados = this.primerVisitado;
+                    boolean encontrado = false;
+                    while(navVisitados != null && !encontrado){
+
+                        if(navVisitados.getNombre().toLowerCase() == nombreDestino){
+                            //Encontro el nodo dentro de los visitados, entonces no se muestra
+                            encontrado = true;  
+                        }
+                        navVisitados = navVisitados.getSiguienteNodo();
+
+                    }
+                    if(!encontrado && this.ultimoVisitado.getNombre().toLowerCase() == nombreDestino){
+                        this.anadirAVisitados(nombreDestino,nav.getDistancia());
+                        System.out.println(nombreDelNodo + "-> Costo de la trayectoria: " + this.trayectoria);
+                    }
+                }
+                else if(nombreDestino.equals(nombreDelNodo)){
+                    navVisitados = this.primerVisitado;
+                    boolean encontrado = false;
+                    while(navVisitados != null && !encontrado){
+
+                        if(navVisitados.getNombre().toLowerCase() == nombreOrigen){
+                            //Encontro el nodo dentro de los visitados, entonces no se muestra
+                            encontrado = true;
+                            this.anadirAVisitados(nombreOrigen, nav.getDistancia());
+                            System.out.println(nombreDelNodo + "-> Costo de la trayectoria: " + this.trayectoria);
+                        }
+                        navVisitados = navVisitados.getSiguienteNodo();
+
+                    }
+                    if(!encontrado && this.ultimoVisitado.getNombre().toLowerCase() == nombreOrigen){
+                        this.anadirAVisitados(nombreDestino,nav.getDistancia());
+                        System.out.println(nombreDelNodo + "-> Costo de la trayectoria: " + this.trayectoria);
+                    }
+                }
+                nav = nav.getSiguienteArista();
+            }
+        }
+        if(nav == null){
+            System.out.println("Este nodo " + nombreDelNodo + " no es adyancente al ultimo nodo vistado!");
+        }
+        
+    }
+    
+    public String nombreUltimoNodoVisitado(){
+        if(this.primerVisitado == null){
+            return "Ninguno visitado";
+        }
+        else if(this.primerVisitado.getSiguienteNodo() == null){
+            return this.primerVisitado.getNombre();
+        }
+        else{
+            return this.ultimoVisitado.getNombre();
         }
     }
     
@@ -141,6 +229,17 @@ public class Grafo {
             nav = nav.getSiguienteNodo();
         }
         System.out.println("--Fin de la impresion de visitados --- ");
+    }
+    
+    public Nodo getNodo(String nombreDelNodo){
+        Nodo nav  = this.primerNodo;
+        while(nav != null){
+            if(nav.getNombre().toLowerCase().equals(nombreDelNodo.toLowerCase())){
+                return nav;
+            }
+            nav = nav.getSiguienteNodo();
+        }
+        return null;
     }
     
     public void anadirNodo(String nuevo){
@@ -264,7 +363,7 @@ public class Grafo {
         Arista nav = this.primeraArista;
         nombreNodo = nombreNodo.toLowerCase();
         Nodo navVisitados;
-        
+        System.out.println("\n--- Adyacentes no visitados de " + nombreNodo + " ---");
         while(nav != null){
             String nombreOrigen = nav.getOrigen().getNombre().toLowerCase();
             String nombreDestino = nav.getDestino().getNombre().toLowerCase();
@@ -302,7 +401,9 @@ public class Grafo {
                     System.out.println(nombreOrigen + "-> Distancia: " + nav.getDistancia());
                 }
             }
+            nav = nav.getSiguienteArista();
         }
+        System.out.println("--- fin adyacentes no visitados ---\n");
     }
     
     public void cargaGrafoDeArchivo(){

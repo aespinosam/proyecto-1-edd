@@ -155,7 +155,7 @@ public class Simulacion {
         }
         else{
             //Logica principal de la simulacion
-            for (int i = 1; i < this.iteraciones; i++) {
+            for (int i = 1; i <= this.iteraciones; i++) {
                 
                 //Inicializo mi lista de nodos visitados
                 this.primerNodoVisitado = this.inicio;
