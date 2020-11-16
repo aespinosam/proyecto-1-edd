@@ -162,12 +162,13 @@ public class Grafo {
         }
         else{
             boolean encontrado = false;
-            while(nav != null){
+            while(nav != null || !encontrado){
                 String nombreOrigen = nav.getOrigen().getNombre().toLowerCase();
                 String nombreDestino = nav.getDestino().getNombre().toLowerCase();
 
                 //Obtenemos los nodos adyacentes
                 if(nombreOrigen.equals(nombreDelNodo)){
+                    System.out.println("Encontrado en el nodo" + nombreOrigen + " --> " + nombreDestino);
                     navVisitados = this.primerVisitado;
                     while(navVisitados != null && !encontrado){
 
@@ -184,6 +185,7 @@ public class Grafo {
                     }
                 }
                 else if(nombreDestino.equals(nombreDelNodo)){
+                    System.out.println("Encontrado en el nodo" + nombreOrigen + " --> " + nombreDestino);
                     navVisitados = this.primerVisitado;
                     while(navVisitados != null && !encontrado){
 
