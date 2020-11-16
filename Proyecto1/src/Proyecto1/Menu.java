@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 public class Menu extends javax.swing.JFrame {
     
     Grafo miGrafo;
+    Simulacion sim = new Simulacion();
 
     
 
@@ -189,6 +190,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        sim.setGrafoSim(miGrafo);
+        sim.setAlfa(Float.parseFloat(JOptionPane.showInputDialog("Ingrese el Alfa a utilizar: ")));
+        sim.setBeta(Float.parseFloat(JOptionPane.showInputDialog("Ingrese el Beta a utilizar: ")));
+        sim.setIteraciones(Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de iteraciones: ")));
+        sim.setDisipacion(Float.parseFloat(JOptionPane.showInputDialog("Ingrese la taza de disipación a utilizar: ")));
+        sim.setferomIniciales(Float.parseFloat(JOptionPane.showInputDialog("Ingrese el numero de feromonas a utilizar: ")));
+        
+                
+                
+                
+        sim.iniciarSimulacion();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

@@ -134,6 +134,14 @@ public class Simulacion {
         this.ultimoNodoVisitado = ultimoNodoVisitado;
     }
     
+    public float getferomIniciales() {
+        return feromIniciales;
+    }
+
+    public void setferomIniciales(float feromIniciales) {
+        this.feromIniciales = feromIniciales;
+    }
+    
     //Metodo para arrancar la simulacion
     public void iniciarSimulacion(){
         //Primero validamos que todos los valores esten llenos y sean correctos
