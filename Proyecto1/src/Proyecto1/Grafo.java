@@ -159,6 +159,7 @@ public class Grafo {
             System.out.println(nombreDelNodo + "-> Costo de la trayectoria: 0");
         }
         else{
+            boolean encontrado = false;
             while(nav != null){
                 String nombreOrigen = nav.getOrigen().getNombre().toLowerCase();
                 String nombreDestino = nav.getDestino().getNombre().toLowerCase();
@@ -166,7 +167,6 @@ public class Grafo {
                 //Obtenemos los nodos adyacentes
                 if(nombreOrigen.equals(nombreDelNodo)){
                     navVisitados = this.primerVisitado;
-                    boolean encontrado = false;
                     while(navVisitados != null && !encontrado){
 
                         if(navVisitados.getNombre().toLowerCase() == nombreDestino){
@@ -183,7 +183,6 @@ public class Grafo {
                 }
                 else if(nombreDestino.equals(nombreDelNodo)){
                     navVisitados = this.primerVisitado;
-                    boolean encontrado = false;
                     while(navVisitados != null && !encontrado){
 
                         if(navVisitados.getNombre().toLowerCase() == nombreOrigen){
@@ -202,9 +201,9 @@ public class Grafo {
                 }
                 nav = nav.getSiguienteArista();
             }
-        }
-        if(nav == null){
-            System.out.println("Este nodo " + nombreDelNodo + " no es adyancente al ultimo nodo vistado!");
+            if(encontrado = false){
+                System.out.println("Este nodo " + nombreDelNodo + " no es adyancente al ultimo nodo vistado!");
+            }
         }
         
     }
