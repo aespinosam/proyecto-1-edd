@@ -11,11 +11,11 @@ package Proyecto1;
  */
 public class Nodo {
     String nombre;
-    float tau;
+    double tau;
     Lista_Adyacencia nodosAdyacentes;
     Nodo siguienteNodo;
     
-    public Nodo(String nombreNodo, float ferom){
+    public Nodo(String nombreNodo, double ferom){
         this.nombre = nombreNodo;
         this.tau = ferom;
         this.siguienteNodo = null;
@@ -44,11 +44,11 @@ public class Nodo {
         this.nombre = nombre;
     }
 
-    public float getFeromonas() {
+    public double getFeromonas() {
         return tau;
     }
 
-    public void setFeromonas(float tau) {
+    public void setFeromonas(double tau) {
         this.tau = tau;
     }
 
