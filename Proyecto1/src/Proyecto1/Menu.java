@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Menu extends javax.swing.JFrame {
     
     Grafo miGrafo;
-    AgregarVertice AggVertice = new AgregarVertice();
+
     
 
     /**
@@ -30,6 +30,15 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.miGrafo = unGrafo;
         
+     }
+     
+     
+    public void showMenu(){
+          
+
+           this.setVisible(true);
+            
+             
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -184,8 +193,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        AggVertice.setVisible(true);
-        this.setVisible(false);
+        String CTOr = JOptionPane.showInputDialog("Ingrese el nombre de la ciudad de origen: ");
+        String CTDe = JOptionPane.showInputDialog("Ingrese el nombre de la ciudad de destino: ");
+        Float Distancia = Float.parseFloat(JOptionPane.showInputDialog("Ingrese la distancia entre las dos ciudades: "));
+        miGrafo.anadirArista(CTOr, CTDe, Distancia);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

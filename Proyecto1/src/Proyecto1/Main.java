@@ -11,6 +11,14 @@ package Proyecto1;
  */
 public class Main {
     
+    public void setMenu(Menu menu){
+        
+        menu.showMenu();
+        
+    }
+    
+    
+    
     public static void main(String [] args){
         
         Grafo miGrafo = new Grafo();
@@ -29,16 +37,12 @@ public class Main {
 //        miGrafo.getNodosAdyacentes("caracas");
         miGrafo.getNodosAdyacentes("madrid");
         
-    }
-    
-    public void showMenu(boolean setShow){
-        if (setShow == true){
-            
-            
-            
-        }
+
         
+    }
+
+
         
     }
     
-}
+
